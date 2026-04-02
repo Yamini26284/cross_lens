@@ -7,3 +7,4 @@ data/
 .DS_Store
 Thumbs.db
 chroma_store/
+test.txt(dummy required to let the users know this is needed.)
