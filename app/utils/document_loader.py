@@ -17,7 +17,7 @@ def load_document(file_path: str):
     if ext == ".pdf":
         loader = PyPDFLoader(file_path)
     elif ext == ".txt":
-        loader = TextLoader(file_path)
+        loader = TextLoader(file_path, encoding = 'utf-8')
     elif ext == ".docx":
         loader = Docx2txtLoader(file_path)
     else:
