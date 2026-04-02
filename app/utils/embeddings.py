@@ -1,6 +1,7 @@
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 import os
+import chromadb
 
 CHROMA_DIR = "chroma_store"
 
@@ -10,7 +11,17 @@ def get_embeddings():
     )
 
 def store_chunks(chunks):
+    import shutil
     embeddings = get_embeddings()
+    
+    try:
+        if os.path.exists(CHROMA_DIR):
+            client = chromadb.PersistentClient(path=CHROMA_DIR)
+            client.delete_collection("langchain")
+    except:
+        if os.path.exists(CHROMA_DIR):
+            shutil.rmtree(CHROMA_DIR, ignore_errors=True)
+
     vectorstore = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
