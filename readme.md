@@ -145,6 +145,6 @@ streamlit run main.py
 ## 👤 Author
 
 **Yamini Priya M**
-CS Grad | Building in public
+LLM Application Developer | Building in public
 
 [GitHub](https://github.com/Yamini26284) · [LinkedIn](https://linkedin.com/in/Yamini26284)
