@@ -1,19 +1,20 @@
 # 🔍 CrossLens
 
-> Upload any document. Ask a question. Get evidence on **both sides** — not just the agreeable answer.
+> Upload any document. Ask a question. Get evidence on **both sides** - not just the agreeable answer.
 
 CrossLens is an advanced RAG (Retrieval-Augmented Generation) system that verifies claims against documents by finding supporting **and** contradicting evidence simultaneously. Unlike standard RAG chatbots that hallucinate by agreeing with users, CrossLens is deliberately skeptical.
 
 ---
 
 ## 🚀 Live Demo
-_Coming soon_
+
+[🚀 Try CrossLens Live](https://cross-lens-advanced-rag.streamlit.app/)
 
 ---
 
 ## 🧠 How It Works
 
-Most RAG systems find the most similar text to your query and call it an answer. CrossLens does something different — it runs three parallel searches, evaluates the quality of what it finds, and gives you a structured verdict with citations.
+Most RAG systems find the most similar text to your query and call it an answer. CrossLens does something different, it runs three parallel searches, evaluates the quality of what it finds, and gives you a structured verdict with citations.
 
 ```
 User uploads document + asks a query
@@ -33,15 +34,15 @@ Generator → Structured verdict with citations
 
 ### 1. Adaptive Routing
 Not every query needs a heavy pipeline. A lightweight classifier routes each query:
-- **SIMPLE** — document summary or explanation questions
-- **COMPLEX** — claim verification, fact-checking
-- **GENERAL** — unrelated to the document, triggers web search
+- **SIMPLE** : document summary or explanation questions
+- **COMPLEX** : claim verification, fact-checking
+- **GENERAL** : unrelated to the document, triggers web search
 
 ### 2. Multi-Vector Retrieval
 Instead of one search query, fires three in parallel:
-- Supporting query — finds evidence FOR the claim
-- Contradicting query — finds evidence AGAINST the claim
-- Neutral query — finds ambiguous or nuanced statements
+- Supporting query : finds evidence FOR the claim
+- Contradicting query : finds evidence AGAINST the claim
+- Neutral query : finds ambiguous or nuanced statements
 
 Results are merged and deduplicated before passing forward.
 
@@ -60,33 +61,40 @@ This eliminates the classic RAG failure of generating confident answers from gar
 | Layer | Technology |
 |---|---|
 | LLM | Groq API (Llama 3.3 70B) |
-| Embeddings | Sentence Transformers (all-MiniLM-L6-v2) — local, free |
-| Vector DB | ChromaDB — local |
+| Embeddings | Sentence Transformers (all-MiniLM-L6-v2) - local, free |
+| Vector DB | ChromaDB - local |
 | Pipeline | LangChain + LangGraph |
 | Web Search Fallback | DDGS (DuckDuckGo) |
 | Frontend | Streamlit |
 
-**Cost to run: $0** — all embeddings and vector storage run locally.
+**Cost to run: $0** - all embeddings and vector storage run locally.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-crosslens/
+cross_lens/
+├── .streamlit/
+│   └── config.toml             ← Streamlit configuration
 ├── app/
 │   ├── core/
-│   │   ├── router.py        ← Adaptive routing logic
-│   │   ├── retriever.py     ← Multi-vector retrieval
-│   │   ├── evaluator.py     ← CRAG evaluator
-│   │   ├── generator.py     ← Verdict generation
-│   │   └── pipeline.py      ← Connects all stages
-│   └── utils/
-│       ├── document_loader.py  ← PDF, DOCX, TXT parsing
-│       └── embeddings.py       ← ChromaDB operations
-├── main.py                  ← Streamlit app entry point
+│   │   ├── __init__.py
+│   │   ├── router.py           ← Adaptive routing logic
+│   │   ├── retriever.py        ← Multi-vector retrieval
+│   │   ├── evaluator.py        ← CRAG evaluator
+│   │   ├── generator.py        ← Verdict generation
+│   │   └── pipeline.py         ← Connects all stages
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── document_loader.py  ← PDF, DOCX, TXT parsing
+│   │   └── embeddings.py       ← ChromaDB operations
+│   └── __init__.py
+├── tests/                      ← Component-level test scripts
+├── main.py                     ← Streamlit app entry point
 ├── requirements.txt
-└── .env.example
+├── .env.example
+└── .gitignore
 ```
 
 ---
@@ -95,8 +103,8 @@ crosslens/
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/yourusername/crosslens.git
-cd crosslens
+git clone https://github.com/Yamini26284/cross_lens.git
+cd cross_lens
 ```
 
 **2. Create virtual environment**
@@ -128,23 +136,9 @@ streamlit run main.py
 
 ---
 
-## 🗺️ Roadmap
-
-- [x] Adaptive query routing
-- [x] Multi-vector retrieval
-- [x] CRAG evaluator with web search fallback
-- [x] Structured verdict with confidence scoring
-- [x] PDF, DOCX, TXT support
-- [ ] Conversation memory across turns
-- [ ] Multi-document cross referencing
-- [ ] Export verdict as PDF report
-- [ ] Deploy on Streamlit Cloud
-
----
-
 ## 👤 Author
 
 **Yamini Priya M**
-LLM Application Developer | Building in public
+AI/ML Developer · LLM Applications · RAG Systems
 
 [GitHub](https://github.com/Yamini26284) · [LinkedIn](https://linkedin.com/in/Yamini26284)
