@@ -4,6 +4,16 @@
 
 CrossLens is an advanced RAG (Retrieval-Augmented Generation) system that verifies claims against documents by finding supporting **and** contradicting evidence simultaneously. Unlike standard RAG chatbots that hallucinate by agreeing with users, CrossLens is deliberately skeptical.
 
+## Key Architectural Pillars:
+
+**Adaptive Routing** : Uses Gemini 1.5 Flash to classify queries as SIMPLE (greetings/summaries) or COMPLEX (verification), saving latency and cost.
+
+**Multi-Vector Retrieval** : Simultaneously fires three distinct search queries (Supporting, Contradicting, Neutral) to ensure no stone is left unturned.
+
+**Corrective RAG (CRAG)** : An automated Evaluator grades the relevance of local documents. If the local knowledge is insufficient, it triggers a Web Search fallback via DuckDuckGo.
+
+**Agentic UI** : A professional Streamlit dashboard featuring real-time status logs, confidence metrics, and structured evidence tabs.
+
 ---
 
 ## 🚀 Live Demo
